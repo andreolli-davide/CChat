@@ -1,0 +1,23 @@
+1 ^/^ Devid ^/^ La funzione float abasic del mio programma mi dice che ä in conflitto con un'altra
+ ^/^ 1 ^/^ Devid ^/^ Qualcuno puï aiutarmi a risolvere?
+ ^/^ 2 ^/^ Davide ^/^ Ehi, prova a guardare se nella stessa libreria oppure in un'altra libreria che hai incluso esiste gia una funzione con lo stesso nome
+ ^/^ 1 ^/^ Devid ^/^ Grazie mille, ora ho risolto
+ ^/^ 3 ^/^ Cristian ^/^ Scusate, come posso implementare una funzione che aggiunge al carrello un prodotto che scelgo da una lista?
+ ^/^ 2 ^/^ Davide ^/^ Se i prodotti della lista sono salvati in uno struct puoi creare un altro struct dello stesso tipo dei prodotti con il nome carrello e copiare tutti i dati dallo structo prodotto a quello carrello
+ ^/^ 4 ^/^ Daniel ^/^ Esatto, avrei fatto la stessa cosa
+ ^/^ 3 ^/^ Cristian ^/^ Ora provo ad implementarlo e vi faccio sapere. Grazie mille in anticipo
+ ^/^ 3 ^/^ Cristian ^/^ Ok funziona. grazie mille
+ ^/^ 2 ^/^ Davide ^/^ Di nulla :)
+ ^/^ 2 ^/^ Davide ^/^ Ragazzi, entro quando ä l'esecizio che ci ha dato il prof Pancheri?
+ ^/^ 4 ^/^ Daniel ^/^ Credo per martedç, ma non ne sono sicuro
+ ^/^ 1 ^/^ Devid ^/^ Sç ä per martedç alle 10.20
+ ^/^ 2 ^/^ Davide ^/^ Bisogna modificare lo scorso esercizio giusto?
+ ^/^ 1 ^/^ Devid ^/^ Sç ma non sono riuscito per ora. Voi come avete fatto?
+ ^/^ 3 ^/^ Cristian ^/^ Bisogna creare delle funzioni che in base a cosa scegli dal menu apre in maniera differente il file
+ ^/^ 3 ^/^ Cristian ^/^ Prova a guardare le slide su moodle relative all'apertura dei file
+ ^/^ 1 ^/^ Devid ^/^ Perfetto sono riuscito. Alla fine non era complicatissimo
+ ^/^ 2 ^/^ Davide ^/^ Io lo ho fatto in maniera diversa ma mi sembra che funzioni uguale
+ ^/^ 4 ^/^ Daniel ^/^ Mi dareste una mano che non ho capito?
+ ^/^ 2 ^/^ Davide ^/^ Se vuoi tra 5 minuti ti chiamo e ti spiego
+ ^/^ 4 ^/^ Daniel ^/^ Grazie mille, allora preparo tutto
+ ^/^ 
