@@ -32,10 +32,10 @@
  *      resources/users.txt   -->  Sul file salva gli utenti che hanno creato un profilo sul programma.
  *
  *      Librerie:
- *      include/shell.h        -->  Contiene le funzioni che si occupano della stampa a terminale dell'interfaccia
+ *      include/term.h        -->  Contiene le funzioni che si occupano della stampa a terminale dell'interfaccia
  *                                  e dell'interazione con l'utente.
  *      include/chat.h         -->  Contiene alcune funzioni che vengono utilizzate dalle funzioni contenute
- *                                  in shell.h.
+ *                                  in term.h.
  *      include/text.h         -->  Contiene alcune funzione di formattazione del testo nel terminale e alcuni
  *                                  effetti per rendere l'interfaccia meno "noiosa".
  *      include/terminal.h     -->  Contiene le funzioni per poter conoscele le dimensioni del terminale nel
@@ -52,11 +52,13 @@
 
 
 
-#include "shell.h"
+#include "term.h"
 
 int main()
 {
-    shell();
+
+    // Parte il main del programma
+    term();
 
     return 0;
 }

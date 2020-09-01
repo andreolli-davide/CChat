@@ -8,11 +8,11 @@
 
     int get_size_x_of_terminal()
     /*
-     *  Funzione get
-     *
-     *
-     *
-     */
+    * int get_size_x_of_terminal()
+    *
+    * Descrizione -> Trova il numero di colonne nel terminale in uso
+    * Ritorna -> numero di colonne del terminale
+    */
     {
         CONSOLE_SCREEN_BUFFER_INFO csbi;
         GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
@@ -20,6 +20,12 @@
     }
 
     int get_size_y_of_terminal()
+    /*
+    * int get_size_y_of_terminal()
+    *
+    * Descrizione -> Trova il numero di righe nel terminale in uso
+    * Ritorna -> numero di righe del terminale
+    */
     {
         CONSOLE_SCREEN_BUFFER_INFO csbi;
         GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
@@ -39,12 +45,24 @@
     struct winsize w;
 
     int get_size_x_of_terminal()
+    /*
+    * int get_size_x_of_terminal()
+    *
+    * Descrizione -> Trova il numero di colonne nel terminale in uso
+    * Ritorna -> numero di colonne del terminale
+    */
     {
         ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
         return w.ws_col;
     }
 
     int get_size_y_of_terminal()
+    /*
+    * int get_size_y_of_terminal()
+    *
+    * Descrizione -> Trova il numero di righe nel terminale in uso
+    * Ritorna -> numero di righe del terminale
+    */
     {
         ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
         return w.ws_row;

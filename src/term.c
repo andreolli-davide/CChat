@@ -17,7 +17,12 @@
 #define MAX_LENGHT_TEXT 200
 #define MAX_LENGHT 30
 
-void shell_printlogo()
+void term_printlogo()
+/*
+ * void term_printlogo()
+ *
+ * Descrizione -> Stampa il logo del programma
+ */
 {
     colored_centred_text(" .o88b.       .o88b. db   db  .d8b.  d888888b", "cyan");
     colored_centred_text("d8P  Y8      d8P  Y8 88   88 d8' `8b `~~88~~'", "cyan");
@@ -28,10 +33,15 @@ void shell_printlogo()
     printf("\n\n");
 }
 
-void shell_help()
+void term_help()
+/*
+ * void term_help()
+ *
+ * Descrizione -> Stampa l'output del comando help
+ */
 {
     clear();
-    shell_printlogo();
+    term_printlogo();
     printf("Lista di comandi:\n");
     printf("help            Mostra questa schermata di aiuto\n");
     printf("load            Leggi o ricarica il contenuto della chat\n");
@@ -41,10 +51,15 @@ void shell_help()
     printf("quit            Effettua l'uscita dal programma\n\n");
 }
 
-void shell_info()
+void term_info()
+/*
+ * void term_info()
+ *
+ * Descrizione -> Stampa l'output del comando info
+ */
 {
     clear();
-    shell_printlogo();
+    term_printlogo();
     center_text("Creato da Davide Andreolli");
     center_text("Chat di messaggistica su terminale");
     center_text("Interamente scritto in linguaggio C");
@@ -52,16 +67,23 @@ void shell_info()
     printf("\n\n");
 }
 
-void shell_load_chat(char loginusername[], int loginid)
+void term_load_chat(int id, char user[])
+/*
+ * void term_load_chat()
+ *
+ * Descrizione -> Carica la chat dai file di salvataggio e la stampa
+ * Parametri -> id -> id dell'utente
+ *              user -> nome utente
+ */
 {
     clear();
-    shell_printlogo();
+    term_printlogo();
     FILE * fp;
-    char NomeFile[20] = {"chatbk.txt"};
+    char NomeFile[20] = "resources/chatbk.txt";
     char stringa[MAX_LENGHT_TEXT];
     char username[MAX_LENGHT];
     char text[MAX_LENGHT_TEXT] = "";
-    int counter = 0, id = 0;
+    int counter = 0, user_id = 0;
 
     fp = fopen(NomeFile, "r");
 
@@ -73,10 +95,10 @@ void shell_load_chat(char loginusername[], int loginid)
             counter++;
             if(counter == 3)
             {
-                if(strcmp(username, loginusername))
-                    chat_other_user_message(id, username, text);
+                if(strcmp(username, user))
+                    chat_other_user_message(user_id, username, text);
                 else
-                    chat_login_user_message(id, username, text);
+                    chat_logged_user_message(user_id, username, text);
                 counter = 0;
                 memset(text, 0, strlen(text));
             }
@@ -84,7 +106,7 @@ void shell_load_chat(char loginusername[], int loginid)
             printf("\n");
         }
         if(counter == 0) // ID
-            id = stringtoint(stringa);
+            user_id = stringtoint(stringa);
         else if (counter == 1 && strcmp(stringa, "^/^")) // Mittente
             strcpy(username, stringa);
         else if (counter == 2 && strcmp(stringa, "^/^"))
@@ -98,10 +120,17 @@ void shell_load_chat(char loginusername[], int loginid)
     fclose(fp);
 }
 
-int shell_find_id(char username[])
+int term_find_id(char user[])
+/*
+ * int term_find_id()
+ *
+ * Descrizione -> Trova l'id dell'utente nei file di salvataggio
+ * Parametri -> user -> username dell'utente
+ * Ritorna -> id dell'utente
+ */
 {
     FILE * fp;
-    char NomeFile[20] = {"users.txt"};
+    char NomeFile[20] = "resources/users.txt";
     char stringa[MAX_LENGHT];
 
     fp = fopen(NomeFile, "r");
@@ -120,7 +149,7 @@ int shell_find_id(char username[])
         else if(counter == 0) // ID
             id++;
         else if(counter == 1) // Username
-            if(!strcmp(username, stringa))
+            if(!strcmp(user, stringa))
                 return id;
     }
 
@@ -128,10 +157,16 @@ int shell_find_id(char username[])
     return id;
 }
 
-int shell_check_id()
+int term_check_id()
+/*
+ * int term_check_id()
+ *
+ * Descrizione -> Trova il numero di id (utenti) registrati
+ * Ritorna -> numero di id registrati
+ */
 {
     FILE * fp;
-    char NomeFile[20] = {"users.txt"};
+    char NomeFile[20] = "resources/users.txt";
     char stringa[MAX_LENGHT];
 
     fp = fopen(NomeFile, "r");
@@ -155,37 +190,48 @@ int shell_check_id()
     return id;
 }
 
-void shell_register(char username[], char loginusername[])
+void term_register(char * user)
+/*
+ * void term_register()
+ *
+ * Descrizione -> Stampa il messaggio di un utente diverso da quello loggato
+ * Parametri -> *user -> puntatore alla variabile del nome utente
+ */
 {
     FILE * fp;
-    char NomeFile[] = "users.txt";
+    char NomeFile[] = "resources/users.txt";
     char stringcopy[MAX_LENGHT];
 
-    strcpy(stringcopy, username);
+    strcpy(stringcopy, user);
     fp = fopen(NomeFile, "a");
-    fprintf(fp, "%d ^/^ %s ^/^ ", shell_check_id() + 1, username);
+    fprintf(fp, "%d ^/^ %s ^/^ ", term_check_id() + 1, user);
     fclose(fp);
     tutto_minuscolo(stringcopy);
     clear();
     center_text("Benvenuto/a\n");
-    print_Effetto_Figo(stringcopy, shell_check_id() + 1);
+    print_Effetto_Figo(stringcopy, term_check_id() + 1);
     printf("\n\n");
-    strcpy(loginusername, username);
 }
 
-void shell_login(char loginusername[])
+void term_login(char * user)
+/*
+ * void term_login()
+ *
+ * Descrizione -> Carica la chat dai file di salvataggio e la stampa
+ * Parametri -> *user -> puntatore alla variabile del nome utente
+ */
 {
-    char NomeFile[] = "users.txt";
-    char username[MAX_LENGHT], stringa[MAX_LENGHT];
+    char NomeFile[] = "resources/users.txt";
+    char stringa[MAX_LENGHT];
     char stringcopy[MAX_LENGHT];
     int id, counter = 0, scelta = 0;
 
     while(!scelta)
     {
         clear();
-        shell_printlogo();
+        term_printlogo();
         printf("LOGIN\nDigita il tuo username: ");
-        scanf("%s", username);
+        scanf("%s", user);
         printf("\n");
 
         FILE * fp;
@@ -206,13 +252,12 @@ void shell_login(char loginusername[])
             }
             else if (counter == 1) // Username
             {
-                if(!strcmp(username, stringa))
+                if(!strcmp(user, stringa))
                 {
                     strcpy(stringcopy, stringa);
                     tutto_minuscolo(stringcopy);
                     center_text("Benvenuto/a\n");
                     print_Effetto_Figo(stringcopy, id);
-                    strcpy(loginusername, stringa);
                     printf("\n\n");
                     clear();
                     return;
@@ -223,23 +268,26 @@ void shell_login(char loginusername[])
         printf("Mhhh... Sembra che nel database non ci sia questo nome.\nRiprovare(0) o aggiungerlo come nuovo utente(1)?\nScelta: ");
         scanf("%d", &scelta);
         if(scelta)
-            shell_register(username, loginusername);
+            term_register(user);
 
     }
 
 }
 
-void shell()
+void term()
+/*
+ * void term()
+ *
+ * Descrizione -> Main del programma
+ */
 {
     char input[MAX_LENGHT];
     char messaggio[MAX_LENGHT_TEXT];
     char temp;
     char username[MAX_LENGHT];
 
-    chdir("resources");
-
-    shell_login(username);
-    shell_printlogo();
+    term_login(username);
+    term_printlogo();
     printf("Digita 'help' per la lista dei comandi\nConsiglio: Per una migliore esperienza metti a schermo intero la finestra\n\n");
     while(1)
     {
@@ -248,9 +296,9 @@ void shell()
         scanf("%s", input);
 
         if(!strcmp(input, "help"))
-            shell_help();
+            term_help();
         else if(!strcmp(input, "logout"))
-            shell_login(username);
+            term_login(username);
         else if(!strcmp(input, "quit"))
             return;
         else if(!strcmp(input, "send"))
@@ -258,12 +306,12 @@ void shell()
             printf("%s > Messaggio > ", username);
             scanf("%c",&temp);
             fgets(messaggio, 200, stdin);
-            chat_write_message(username, shell_find_id(username), messaggio);
+            chat_write_message(term_find_id(username), username, messaggio);
         }
         else if(!strcmp(input, "load"))
-            shell_load_chat(username, shell_find_id(username));
+            term_load_chat(term_find_id(username), username);
         else if(!strcmp(input, "info"))
-            shell_info();
+            term_info();
         else
             printf("Sintassi errata, digita -h per la lista dei comandi\n");
     }

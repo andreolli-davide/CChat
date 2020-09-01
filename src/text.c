@@ -66,15 +66,27 @@ char text_colors[6][7] = {
 
 size_t strlen(const char *s);
 
-void tutto_minuscolo(char stringa[])
+void tutto_minuscolo(char* text)
+/*
+ * void tutto_minuscolo()
+ *
+ * Descrizione -> Converte una stringa con delle possibili lettere minuscole in minuscolo
+ * Parametri -> text -> stringa da convertire
+ */
 {
     int i;
-    for(i=0; i<strlen(stringa); i++)
-        if(stringa[i] > 64 && stringa[i] < 91)
-            stringa[i] += 32;
+    for(i=0; i<strlen(text); i++)
+        if(text[i] > 64 && text[i] < 91)
+            text[i] += 32;
 }
 
 void center_text(char text[])
+/*
+ * void center_text()
+ *
+ * Descrizione -> Stampa una scritta allineata al centro dell'interfaccia del terminale
+ * Parametri -> text -> stringa da allineare
+ */
 {
     int width = get_size_x_of_terminal();
     int i;
@@ -85,6 +97,13 @@ void center_text(char text[])
 }
 
 void colored_centred_text(char text[], char color[])
+/*
+ * void colored_center_text()
+ *
+ * Descrizione -> Converte una stringa con delle possibili lettere minuscole in minuscolo
+ * Parametri -> text -> stringa da allineare e colorare
+ *              color -> colore della stringa
+ */
 {
     int width = get_size_x_of_terminal();
     int i;
@@ -96,6 +115,13 @@ void colored_centred_text(char text[], char color[])
 }
 
 void print_Effetto_Figo(char text[], int color)
+/*
+ * void print_Effetto_Figo()
+ *
+ * Descrizione -> Stampa un effetto del testo
+ * Parametri -> text -> stringa da allineare e colorare
+ *              color -> colore della stringa
+ */
 {
     int width = get_size_x_of_terminal();
     int i, j;
@@ -133,43 +159,15 @@ void print_Effetto_Figo(char text[], int color)
 }
 
 int stringtoint(char string[])
+/*
+ * int stringtoint()
+ *
+ * Descrizione -> Converte una stringa in un intero
+ * Parametri -> text -> stringa da convertire
+ */
 {
     int i, tot = 0;
     for(i=0; i<strlen(string); i++)
         tot = tot * 10 + string[i] - 48;
     return tot;
-}
-
-void ROT_encode(char str[])
-{
-    int i;
-    for(i = 0; i < strlen(str); i++)
-    {
-        // Numeri
-        if(str[i] >= 48 && str[i] <= 57)
-        {
-            if(str[i] <= 52)
-                str[i] += 5;
-            else
-                str[i] -= 5;
-        }
-
-        // Maiuscole
-        if(str[i] >= 65 && str[i] <= 90)
-        {
-            if(str[i] <= 77)
-                str[i] += 13;
-            else
-                str[i] -= 13;
-        }
-
-        // Minuscole
-        if(str[i] >= 97 && str[i] <= 122)
-        {
-            if(str[i] <= 109)
-                str[i] += 13;
-            else
-                str[i] -= 13;
-        }
-    }
 }

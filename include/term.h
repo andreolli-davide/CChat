@@ -1,33 +1,33 @@
 // @ Davide Andreolli, 2020
 
-#ifndef SHELL_H_INCLUDED
-#define SHELL_H_INCLUDED
+#ifndef TERM_H_INCLUDED
+#define TERM_H_INCLUDED
 
 // Stampa il logo del programma
-void shell_printlogo();
+void term_printlogo();
 
 // Stampa la lista delle funzioni disponibili
-void shell_help();
+void term_help();
 
 // Stampa le informazioni del programma
-void shell_info();
+void term_info();
 
 // Trova l'ID dell'utente dato in input
-int shell_find_id(char username[]);
+int term_find_id(char username[]);
 
 // Trova il numero degli utenti
-int shell_check_id(char username[]);
+int term_check_id(char username[]);
 
 // Stampa il contenuto della chat
-void shell_load_chat(char loginusername[], int loginid);
+void term_load_chat(int id, char user[]);
 
 // Registra un nuovo utente al programma
-void shell_register(char username[]);
+void term_register(char * user);
 
 // Effettua il login al programma
-void shell_login();
+void term_login(char * user);
 
 // Programma principale che si occupa di interagir econ l'utente e stampare la funzione desiderata
-void shell();
+void term();
 
-#endif // SHELL_H_INCLUDED
+#endif // term_H_INCLUDED

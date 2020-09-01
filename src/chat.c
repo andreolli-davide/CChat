@@ -7,7 +7,7 @@
 #include <stdint.h>
 
 #include "text.h"
-#include "shell.h"
+#include "term.h"
 #include "terminal.h"
 
 #define MAX_LENGHT_ID 2
@@ -17,7 +17,11 @@
 
 #define N 150
 
-char text_colors_chat[6][7] = {
+char text_colors_chat[6][7] = 
+/*
+    Colori che possono essere assegnati ad un utente
+*/
+{
     "red",
     "green",
     "yellow",
@@ -25,9 +29,22 @@ char text_colors_chat[6][7] = {
     "magenta",
     "cyan"
 };
+
 size_t strlen(const char *s);
+/*
+    Inizializzo strlen()
+*/
 
 void chat_other_user_message(int id, char user[], char text[])
+/*
+ * void chat_other_user_message()
+ *
+ * Descrizione -> Stampa il messaggio di un utente diverso da quello loggato,
+                  cioè allineato a sinistra
+ * Parametri -> id -> id dell'utente
+ *              user -> nome utente
+ *              text -> messaggio dell'utente
+ */
 {
     printf("    ------------------------------\n");
     printf("    ");
@@ -37,7 +54,15 @@ void chat_other_user_message(int id, char user[], char text[])
     printf("    ------------------------------\n\n");
 }
 
-void chat_login_user_message(int id, char user[], char text[])
+void chat_logged_user_message(int id, char user[], char text[])
+/*
+ * void chat_logged_user_message()
+ *
+ * Descrizione -> Stampa il messaggio dell'utente loggato, cioè allineato a destra
+ * Parametri -> id -> id dell'utente
+ *              user -> nome utente
+ *              text -> messaggio dell'utente
+ */
 {
     int width = get_size_x_of_terminal(), len, i;
     len = strlen(user);
@@ -57,15 +82,23 @@ void chat_login_user_message(int id, char user[], char text[])
     printf("------------------------------\n\n");
 }
 
-void chat_write_message(char loginusername[], int loginid, char messaggio[])
+void chat_write_message(int id, char user[], char text[])
+/*
+ * void chat_write_message()
+ *
+ * Descrizione -> Scrive un messaggio nella chat e lo salva
+ * Parametri -> id -> id dell'utente
+ *              user -> nome utente
+ *              text -> messaggio dell'utente
+ */
 {
     FILE * fp;
-    char NomeFile[20] = {"chatbk.txt"};
+    char NomeFile[20] = "resources/chatbk.txt";
 
     fp = fopen(NomeFile, "a");
 
-    fprintf(fp, "%d ^/^ %s ^/^ %s ^/^ ", loginid, loginusername, messaggio);
+    fprintf(fp, "%d ^/^ %s ^/^ %s ^/^ ", id, user, text);
     fclose(fp);
 
-    shell_load_chat(loginusername, loginid);
+    term_load_chat(id, user);
 }

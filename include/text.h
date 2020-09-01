@@ -4,7 +4,7 @@
 #define TEXT_H_INCLUDED
 
 // Sovrascrive la stringa data in input rendendola interamente minuscola
-void tutto_minuscolo(char stringa[]);
+void tutto_minuscolo(char* text);
 
 // Centra il testo a seconda della dimensione del terminale
 void center_text(char text[]);
@@ -20,8 +20,5 @@ void print_Effetto_Figo(char text[], int color);
 
 // Trasforma un numero contenuto in un carattere o in una stringa in una variabile intera
 int stringtoint(char stringa[]);
-
-// Cifra e decifra in ROT13 una stringa
-void ROT_encode(char str[]);
 
 #endif // TEXT_H_INCLUDED
