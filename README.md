@@ -31,7 +31,7 @@ cd cchat
 ```bash
 # installiamo make e compiliamo
 sudo apt-get install make
-make && rm bin/ --recursive
+make
 
 # Diamo l'avvio all'eseguibile
 ./CChat
@@ -39,7 +39,7 @@ make && rm bin/ --recursive
 
 ## Utilizzo
 
-#### LOGIN
+### LOGIN
 
 ![](images/login_1.png)
 
@@ -53,7 +53,7 @@ Digitando zero e premendo invio ci sarà richiesto nuovamente il nome utente com
 In caso contrario, cioè se scegliamo 1, verrà aggiunto il nome utente e si verrà indirizzati al menù.
 
 
-#### MENÙ
+### MENÙ
 
 Una volta compiuto l'accesso compare la riga di comando per poter interagire con il programma.
 I comandi che possono essere imposti sono:
@@ -61,18 +61,18 @@ I comandi che possono essere imposti sono:
 		Carica i messaggi precedentemente scritti
 ![](images/load.png)
 
-- ### send:
+- #### send:
 		Invia un messaggio
 ![](images/send.png)
 
-- ### logout:
+- #### logout:
 		Ritorna alla schermata di login
 ![](images/logout.png)
 
-- ### info:
+- #### info:
 		Mostra la descrizione del programma e i crediti
 ![](images/info.png)
-- ### exit:
+- #### exit:
 		Esce dal programma
 		
 ## PARTICOLARITÀ
@@ -83,4 +83,4 @@ I comandi che possono essere imposti sono:
 
 
 #### Credits: Davide Andreolli, 2020
-#### Github: andreolli-davide
+#### Github: andreolli-davide/CChat
