@@ -14,7 +14,7 @@ Essendo cross-platform è possibile scambiare messaggi anche tra diversi sistemi
 cd cchat
 
 :: Diamo l'avvio all'eseguibile
-/bin/CChat.exe
+CChat.exe
 ```
 
 #### Linux e Mac (bash)
